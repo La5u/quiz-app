@@ -55,7 +55,7 @@ const App = () => {
   ];
 
   const [answers, setAnswers] = useState({});
-  const [results, setResults] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (index, option) => {
     setAnswers({ ...answers, [index]: option });
@@ -63,8 +63,7 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const score = questions.map((q, i) => answers[i] === q.correct);
-    setResults(score);
+    setSubmitted(true);
   };
 
   return (
@@ -91,31 +90,32 @@ const App = () => {
                     value={option}
                     onChange={() => handleChange(index, option)}
                     className="form-radio"
+                    disabled={submitted}
                   />
                   <span>{option}</span>
                 </label>
               ))}
             </div>
+            {submitted && (
+              <p
+                className={`mt-2 ${
+                  answers[index] === q.correct ? "text-green-600" : "text-red-600"
+                }`}
+              >
+                {answers[index] === q.correct
+                  ? "Correct!"
+                  : `Wrong! The correct answer is "${q.correct}".`}
+              </p>
+            )}
           </div>
         ))}
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Submit
-        </button>
-        {results && (
-          <div className="mt-4">
-            <h2 className="text-xl font-bold">Results:</h2>
-            {results.map((isCorrect, index) => (
-              <p
-                key={index}
-                className={isCorrect ? "text-green-600" : "text-red-600"}
-              >
-                {index + 1}. {isCorrect ? "Correct" : "Wrong"}
-              </p>
-            ))}
-          </div>
+        {!submitted && (
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            Submit
+          </button>
         )}
       </form>
     </div>
@@ -123,3 +123,4 @@ const App = () => {
 };
 
 export default App;
+
