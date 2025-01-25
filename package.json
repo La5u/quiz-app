@@ -1,15 +1,16 @@
 {
   "name": "quiz-app",
-  "version": "0.1.0",
+  "version": "2025-01-25",
   "homepage": "https://la5u.github.io/quiz-app",
   "private": true,
   "dependencies": {
-    "cra-template": "1.2.0",
-    "postcss": "^8.4.49",
+    "cra-template": "^1.2.0",
+    "css-select": "^5.1.0",
+    "framer-motion": "^12.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "^5.0.1",
-    "tailwindcss": "^3.4.17",
+    "svgo": "^3.3.2",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
@@ -39,6 +40,10 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "autoprefixer": "^10.4.16",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.0"
   }
 }
